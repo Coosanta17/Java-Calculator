@@ -32,6 +32,9 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+
+    - name: Make Gradle Wrapper executable
+      run: chmod +x gradlew
           
     # Upload the build artifact
     - name: Upload a Build Artifact
