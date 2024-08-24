@@ -2,9 +2,12 @@ package net.coosanta.calculator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 import java.util.Objects;
 
 public class Main {
+    public static final URL placeholderImage = Objects.requireNonNull(Main.class.getResource("/placeholder.png"));
+
     public static void main(String[] args) {
         // Set screen size to 3/4 of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,15 +49,23 @@ public class Main {
 
         // create options in the FILE menu
         JMenuItem[] fileMenuItems = new JMenuItem[5];
-        fileMenuItems[0] = new JMenuItem("Save");
-        fileMenuItems[1] = new JMenuItem("Quit");
-        fileMenuItems[2] = new JMenuItem("Open");
-        fileMenuItems[3] = new JMenuItem("New");
-        fileMenuItems[4] = new JMenuItem("Help");
+        fileMenuItems[0] = new JMenuItem("New");
+        fileMenuItems[1] = new JMenuItem("Open");
+        fileMenuItems[2] = new JMenuItem("Save");
+        fileMenuItems[3] = new JMenuItem("Help");
+        fileMenuItems[4] = new JMenuItem("Quit");
 
         for (JMenuItem fileMenuItem : fileMenuItems) {
             fileMenu.add(fileMenuItem);
         }
+
+        // Add action listeners to the menu items
+        fileMenuItems[0].addActionListener(e -> System.out.println("New"));
+        fileMenuItems[1].addActionListener(e -> System.out.println("Open"));
+        fileMenuItems[2].addActionListener(e -> System.out.println("Save"));
+        fileMenuItems[3].addActionListener(e -> System.out.println("Help"));
+        fileMenuItems[4].addActionListener(e -> System.exit(0));
+
         return menuBar;
     }
 
@@ -65,18 +76,20 @@ public class Main {
 
         // Add a title above the image
         JLabel titleLabel = new JLabel("Title Text", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD, 24));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the title horizontally
 
         // Load an image in the center
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/placeholder.png")));
-        JLabel imageLabel = new JLabel(imageIcon);
+        ImageIcon placeholderIcon = new ImageIcon(placeholderImage);
+        JLabel imageLabel = new JLabel(placeholderIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image horizontally
 
         // Create a button below the image
-        JButton button = new JButton("Button Text");
-        button.setFont(new Font("Arial", Font.PLAIN, 12)); // Set the button text to be smaller
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button horizontally
+        JButton standardCalculatorButton = new JButton("Standard Calculator");
+        standardCalculatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12)); // Set the button text to be smaller
+        standardCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button horizontally
+
+        standardCalculatorButton.addActionListener(e -> JOptionPane.showInternalMessageDialog(null, "Standard Calculator Button Clicked!!!!", "Button Clicked!!", JOptionPane.INFORMATION_MESSAGE, placeholderIcon));
 
         // Add spacing between components (so much repetition 😭)
         centerPanel.add(Box.createVerticalStrut(20)); // Add space above the title
@@ -84,7 +97,7 @@ public class Main {
         centerPanel.add(Box.createVerticalStrut(10)); // Add space between the title and image
         centerPanel.add(imageLabel);
         centerPanel.add(Box.createVerticalStrut(10)); // Add space between the image and button
-        centerPanel.add(button);
+        centerPanel.add(standardCalculatorButton);
         centerPanel.add(Box.createVerticalStrut(20)); // Add space below the button
 
         return centerPanel;
