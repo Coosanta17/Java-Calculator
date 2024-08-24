@@ -6,7 +6,8 @@ import java.net.URL;
 import java.util.Objects;
 
 public class Main {
-    public static final URL placeholderImage = Objects.requireNonNull(Main.class.getResource("/placeholder.png"));
+    public static final URL PLACEHOLDER_IMAGE = Objects.requireNonNull(Main.class.getResource("/placeholder.png"));
+    public static final JFrame FRAME = new JFrame("Calculator");
 
     public static void main(String[] args) {
         // Set screen size to 3/4 of the screen
@@ -15,10 +16,9 @@ public class Main {
         int height = (int) (screenSize.getHeight() * 0.75);
 
         // Create frame
-        JFrame jframe = new JFrame("Calculator");
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jframe.setSize(width, height);
-        jframe.setLocationRelativeTo(null); // Center the frame
+        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FRAME.setSize(width, height);
+        FRAME.setLocationRelativeTo(null); // Center the frame
 
         // Load panels
         JMenuBar menuBar = createMenuBar();
@@ -34,11 +34,11 @@ public class Main {
         wrapperPanel.add(centerPanel, gbc);
 
         //Adding Components to the frame using border layout.
-        jframe.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
-        jframe.getContentPane().add(BorderLayout.NORTH, menuBar);
-        jframe.getContentPane().add(BorderLayout.CENTER, wrapperPanel);
+        FRAME.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
+        FRAME.getContentPane().add(BorderLayout.NORTH, menuBar);
+        FRAME.getContentPane().add(BorderLayout.CENTER, wrapperPanel);
 
-        jframe.setVisible(true);
+        FRAME.setVisible(true);
     }
 
     private static JMenuBar createMenuBar() {
@@ -80,7 +80,7 @@ public class Main {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the title horizontally
 
         // Load an image in the center
-        ImageIcon placeholderIcon = new ImageIcon(placeholderImage);
+        ImageIcon placeholderIcon = new ImageIcon(PLACEHOLDER_IMAGE);
         JLabel imageLabel = new JLabel(placeholderIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image horizontally
 
@@ -89,7 +89,14 @@ public class Main {
         standardCalculatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12)); // Set the button text to be smaller
         standardCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button horizontally
 
-        standardCalculatorButton.addActionListener(e -> JOptionPane.showInternalMessageDialog(null, "Standard Calculator Button Clicked!!!!", "Button Clicked!!", JOptionPane.INFORMATION_MESSAGE, placeholderIcon));
+        standardCalculatorButton.addActionListener(e -> {
+            // Close the current window
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(centerPanel);
+//            frame.dispose();
+            frame.setVisible(false);
+            // Open the standard calculator
+            net.coosanta.calculator.standard.Main.gui(FRAME.getSize());
+        });
 
         // Add spacing between components (so much repetition 😭)
         centerPanel.add(Box.createVerticalStrut(20)); // Add space above the title
