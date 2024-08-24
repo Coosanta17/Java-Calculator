@@ -34,7 +34,15 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "net.coosanta.calculator.gui"
+//    mainClass = "net.coosanta.calculator.Gui"
+    mainClass.set("net.coosanta.calculator.Gui")
+}
+
+// I shouldn't have to do this.
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = application.mainClass.get()
+    }
 }
 
 tasks.named<Test>("test") {
