@@ -34,8 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-//    mainClass = "net.coosanta.calculator.Gui"
-    mainClass.set("net.coosanta.calculator.Gui")
+    mainClass.set("net.coosanta.calculator.Main")
 }
 
 // I shouldn't have to do this.
