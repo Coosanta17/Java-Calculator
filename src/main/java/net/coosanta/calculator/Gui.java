@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-class gui {
+public class Gui {
     public static void main(String[] args) {
         // Set screen size to 3/4 of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -69,7 +69,7 @@ class gui {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the title horizontally
 
         // Load an image in the center
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(gui.class.getResource("/placeholder.png")));
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(Gui.class.getResource("/placeholder.png")));
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image horizontally
 
