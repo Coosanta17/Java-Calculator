@@ -96,10 +96,10 @@ public class CalculatorFrame extends JFrame {
         standardCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button horizontally
 
         standardCalculatorButton.addActionListener(e -> {
-            // Close the current window
-            dispose();
             // Open the standard calculator
             new StandardFrame(getSize(), getLocation());
+            // Close the current window
+            dispose();
         });
 
         // Add spacing between components

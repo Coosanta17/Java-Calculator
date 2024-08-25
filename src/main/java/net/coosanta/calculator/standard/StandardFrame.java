@@ -44,14 +44,14 @@ public class StandardFrame extends CalculatorFrame {
 
         JButton returnButton = new JButton("Return");
         returnButton.addActionListener(e -> {
-            dispose();
             new CalculatorFrame(getSize(), getLocation());
+            dispose();
         });
 
         JButton resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> {
-            dispose();
             new StandardFrame(getSize(), getLocation());
+            dispose();
         });
 
         bottomPanel.add(label); // Components Added using Flow Layout
