@@ -58,7 +58,7 @@ public class StandardFrame extends CalculatorFrame {
 
     private void calculateAndDisplayResult() {
         try {
-            // Get the input from the text field
+            // Get the input from the text field, trimmed to prevent leading and trailing spaces
             String input = inputField.getText().trim();
 
             // Check if the input is valid
@@ -67,11 +67,11 @@ public class StandardFrame extends CalculatorFrame {
                 return;
             }
 
-            // Calculate the result using a script engine
             double result = evaluateExpression(input);
 
             // Display the result
             resultLabel.setText("Result: " + result);
+
         } catch (ArithmeticException e) {
             resultLabel.setText("Error: Division by Zero");
         } catch (Exception e) {

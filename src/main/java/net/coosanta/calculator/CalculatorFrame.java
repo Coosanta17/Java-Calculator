@@ -5,14 +5,10 @@ import net.coosanta.calculator.standard.StandardFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class CalculatorFrame extends JFrame {
-    protected static final URL PLACEHOLDER_IMAGE = Objects.requireNonNull(Main.class.getResource("/placeholder.png"));
-
     public CalculatorFrame(Dimension frameSize, Point location) {
         super("Calculator");
         setSize(frameSize);
@@ -77,19 +73,13 @@ public class CalculatorFrame extends JFrame {
     }
 
     protected JPanel centerPanelBuilder() {
-        // Create a panel to hold title, image, and button
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // Stack components vertically
 
         // Add a title above the image
-        JLabel titleLabel = new JLabel("Title Text", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Papyrus", Font.BOLD, 24));
+        JLabel titleLabel = new JLabel("Select Calculator!!", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the title horizontally
-
-        // Load an image in the center
-        ImageIcon placeholderIcon = new ImageIcon(PLACEHOLDER_IMAGE);
-        JLabel imageLabel = new JLabel(placeholderIcon);
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image horizontally
 
         // Create buttons below the image
         JButton standardCalculatorButton = new JButton("Standard Calculator");
@@ -101,15 +91,11 @@ public class CalculatorFrame extends JFrame {
         advancedAlgebraAndGraphingCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         standardCalculatorButton.addActionListener(e -> {
-            // Open the standard calculator
             new StandardFrame(getSize(), getLocation());
-            // Close the current window
             dispose();
         });
         advancedAlgebraAndGraphingCalculatorButton.addActionListener(e -> {
-            // Open the advanced calculator
             new AlgebraFrame(getSize(), getLocation());
-            // Close the current window
             dispose();
         });
 
@@ -120,13 +106,10 @@ public class CalculatorFrame extends JFrame {
         buttonsPanel.add(advancedAlgebraAndGraphingCalculatorButton);
 
         // Add spacing between components
-        centerPanel.add(Box.createVerticalStrut(20)); // Add space above the title
+        centerPanel.add(Box.createVerticalStrut(20));
         centerPanel.add(titleLabel);
-        centerPanel.add(Box.createVerticalStrut(10)); // Add space between the title and image
-        centerPanel.add(imageLabel);
-        centerPanel.add(Box.createVerticalStrut(10)); // Add space between the image and button
+        centerPanel.add(Box.createVerticalStrut(10)); // Useless??
         centerPanel.add(buttonsPanel);
-        centerPanel.add(Box.createVerticalStrut(20)); // Add space below the button for no reason whatsoever
 
         return centerPanel;
     }
