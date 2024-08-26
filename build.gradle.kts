@@ -23,6 +23,12 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    // LaTeX rendering library
+    implementation("org.scilab.forge:jlatexmath:1.0.7")
+
+    // Expression parser
+    implementation("net.objecthunter:exp4j:0.4.8")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

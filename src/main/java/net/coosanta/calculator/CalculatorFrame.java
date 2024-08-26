@@ -1,5 +1,6 @@
 package net.coosanta.calculator;
 
+import net.coosanta.calculator.algebra.AlgebraFrame;
 import net.coosanta.calculator.standard.StandardFrame;
 
 import javax.swing.*;
@@ -90,10 +91,14 @@ public class CalculatorFrame extends JFrame {
         JLabel imageLabel = new JLabel(placeholderIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image horizontally
 
-        // Create a button below the image
+        // Create buttons below the image
         JButton standardCalculatorButton = new JButton("Standard Calculator");
-        standardCalculatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12)); // Set the button text to be smaller
-        standardCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button horizontally
+        standardCalculatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+        standardCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton advancedAlgebraAndGraphingCalculatorButton = new JButton("Algebra and Graphing Calculator");
+        advancedAlgebraAndGraphingCalculatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+        advancedAlgebraAndGraphingCalculatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         standardCalculatorButton.addActionListener(e -> {
             // Open the standard calculator
@@ -101,6 +106,18 @@ public class CalculatorFrame extends JFrame {
             // Close the current window
             dispose();
         });
+        advancedAlgebraAndGraphingCalculatorButton.addActionListener(e -> {
+            // Open the advanced calculator
+            new AlgebraFrame(getSize(), getLocation());
+            // Close the current window
+            dispose();
+        });
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+        buttonsPanel.add(standardCalculatorButton);
+        buttonsPanel.add(Box.createHorizontalStrut(10)); // Add space between buttons
+        buttonsPanel.add(advancedAlgebraAndGraphingCalculatorButton);
 
         // Add spacing between components
         centerPanel.add(Box.createVerticalStrut(20)); // Add space above the title
@@ -108,8 +125,8 @@ public class CalculatorFrame extends JFrame {
         centerPanel.add(Box.createVerticalStrut(10)); // Add space between the title and image
         centerPanel.add(imageLabel);
         centerPanel.add(Box.createVerticalStrut(10)); // Add space between the image and button
-        centerPanel.add(standardCalculatorButton);
-        centerPanel.add(Box.createVerticalStrut(20)); // Add space below the button
+        centerPanel.add(buttonsPanel);
+        centerPanel.add(Box.createVerticalStrut(20)); // Add space below the button for no reason whatsoever
 
         return centerPanel;
     }
