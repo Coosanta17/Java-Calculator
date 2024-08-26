@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    // jar fattener
+//    id("com.gradleup.shadow") version "8.3.0"
 }
 
 repositories {
@@ -16,6 +18,9 @@ repositories {
 }
 
 dependencies {
+
+    implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:8.3.0")
+
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
 
@@ -43,14 +48,35 @@ application {
     mainClass.set("net.coosanta.calculator.Main")
 }
 
-// I shouldn't have to do this.
 tasks.jar {
     manifest {
         attributes["Main-Class"] = application.mainClass.get()
     }
 }
 
+//// Configure the shadowJar task
+//tasks {
+//    shadowJar {
+//        archiveClassifier.set("")
+//        manifest {
+//            attributes["Main-Class"] = application.mainClass.get()
+//        }
+//    }
+//}
+
+//// Ensure the shadowJar task is used when building the jar
+//// Ensure the clean task is executed before building the shadow JAR
+//tasks.build {
+//    dependsOn(tasks.shadowJar)
+//}
+
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+// Update Gradle to use non-deprecated features
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+    options.release.set(21)
 }
