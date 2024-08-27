@@ -6,10 +6,13 @@
  */
 
 plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    application
     // jar fattener
-//    id("com.gradleup.shadow") version "8.3.0"
+    id("com.gradleup.shadow") version "8.3.0"
+    // Apply the application plugin to add support for building a CLI application in Java.
+
+    java
+
+    application
 }
 
 repositories {
@@ -19,7 +22,7 @@ repositories {
 
 dependencies {
 
-    implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:8.3.0")
+    //implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:8.3.0")
 
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
