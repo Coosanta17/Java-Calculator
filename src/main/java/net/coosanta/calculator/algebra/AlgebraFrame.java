@@ -13,7 +13,7 @@ public class AlgebraFrame extends CalculatorFrame {
     protected JPanel displayPanel;
 
     public AlgebraFrame(Dimension frameSize, Point location) {
-        super(frameSize, location);
+        super(frameSize, location, "Algebra Calculator");
     }
 
     @Override
@@ -73,29 +73,7 @@ public class AlgebraFrame extends CalculatorFrame {
     }
 
     @Override
-    protected JPanel bottomPanelBuilder() {
-        // Create the panel at bottom
-        JPanel bottomPanel = new JPanel();
-
-        JLabel label = new JLabel("Bottom Text");
-
-        JButton returnButton = new JButton("Return");
-        returnButton.addActionListener(e -> {
-            new CalculatorFrame(getSize(), getLocation());
-            dispose();
-        });
-
-        JButton resetButton = new JButton("Reset");
-        resetButton.addActionListener(e -> {
-            new AlgebraFrame(getSize(), getLocation());
-            dispose();
-        });
-
-        bottomPanel.add(label); // Components Added using Flow Layout
-        bottomPanel.add(returnButton);
-        bottomPanel.add(resetButton);
-
-
-        return bottomPanel;
+    protected void createNewFrame() {
+        new AlgebraFrame(getSize(), getLocation());
     }
 }
