@@ -3,7 +3,7 @@ package net.coosanta.calculator;
 import javax.swing.*;
 import java.awt.*;
 
-import static net.coosanta.calculator.Main.windowFrameName;
+import static net.coosanta.calculator.Main.WINDOW_FRAME_NAME;
 
 public abstract class CalculatorFrame extends WindowFrame {
     public CalculatorFrame(Dimension frameSize, Point location, String name){
@@ -19,7 +19,7 @@ public abstract class CalculatorFrame extends WindowFrame {
 
         JButton returnButton = new JButton("Return");
         returnButton.addActionListener(e -> {
-            new WindowFrame(getSize(), getLocation(), windowFrameName);
+            new WindowFrame(getSize(), getLocation(), WINDOW_FRAME_NAME);
             dispose();
         });
 
